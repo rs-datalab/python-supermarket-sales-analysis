@@ -1,52 +1,97 @@
-# Supermarket Sales EDA (Python)
+# Supermarket Sales Analysis
 
 ## Overview
-This project explores supermarket transaction data to understand profitability patterns and evaluate whether customer satisfaction (Rating) is related to gross income.
 
-It includes:
-- Data loading + inspection
-- Data cleaning (duplicates + missing values)
-- Univariate and bivariate analysis
-- Time series aggregation by date
-- Pairwise numeric relationships and correlation analysis
-- A short written report for recruiters
+This project explores supermarket transaction data to understand profitability patterns and evaluate whether customer satisfaction (`Rating`) is related to gross income.
+
+The analysis combines data cleaning, exploratory analysis, correlation analysis, and visual reporting to produce a concise set of business-facing findings.
+
+## Objective
+
+The goal of this project is to:
+
+- inspect and prepare supermarket transaction data for analysis
+- explore profitability patterns across branches, customers, and payment methods
+- assess whether customer rating is related to gross income
+- visualize key distributions and relationships
+- summarize findings in a recruiter-friendly report
 
 ## Dataset
-Supermarket Sales (Kaggle): https://www.kaggle.com/aungpyaeap/supermarket-sales  
-Time: Jan–Mar 2019  
-Branches: A/B/C
 
-## Key Results (high level)
-- Ratings are broadly uniform; no strong skew.
-- Rating vs gross income: correlation ≈ -0.04 → no meaningful relationship.
-- Branch C shows a slightly higher median gross income, but distributions overlap heavily.
-- Payment method and gender show minimal differences in gross income distributions.
-- Financial variables (Tax/Total/cogs/gross income) are highly correlated because they’re derived.
+**Source:** Kaggle — Supermarket Sales  
+https://www.kaggle.com/aungpyaeap/supermarket-sales
 
-See the notebook for plots and supporting analysis.
+Dataset scope:
 
-## Figures (selected outputs)
+- time period: January to March 2019
+- branches: A, B, and C
+- multiple cities, product lines, and payment methods
 
-Below are a few key visuals from the EDA (saved in the `figures/` folder):
+The dataset includes financial metrics, transaction-level variables, and customer ratings.
 
-### Rating distribution
-![Rating distribution](figures/rating_distribution.png)
+## Tools
 
-### Rating vs gross income (with regression)
-![Rating vs gross income](figures/rating_vs_gross_income_regression.png)
+- Python
+- pandas
+- NumPy
+- matplotlib
+- seaborn
+- scipy
 
-### Correlation heatmap (numeric features)
-![Correlation heatmap](figures/correlation_heatmap.png)
+Optional:
 
-### Average gross income over time
-![Average gross income over time](figures/avg_gross_income_over_time.png)
+- ydata-profiling
+- calmap
 
+## What This Project Does
 
-## Project Structure 
+The notebook covers a structured EDA workflow:
+
+- loads and inspects transaction data
+- checks data types, missing values, and duplicates
+- performs simple imputation for missing values
+- explores distributions of numeric variables
+- compares gross income across branch, gender, and payment method
+- analyzes the relationship between rating and gross income
+- aggregates average gross income over time
+- examines pairwise numeric relationships
+- computes and visualizes a correlation matrix
+- saves key charts for use in the portfolio
+
+## Highlights
+
+High-level results from the analysis include:
+
+- ratings are broadly uniform and show no strong skew
+- rating and gross income have almost no linear relationship (correlation ≈ -0.04)
+- branch-level gross income distributions overlap heavily, though Branch C appears slightly higher in median gross income
+- gender and payment method show minimal differences in gross income distribution
+- financial variables such as `Tax 5%`, `Total`, `cogs`, and `gross income` are highly correlated because they are derived from shared calculations
+- average gross income fluctuates over time with no clear sustained trend across the three-month period
+
+## Outputs
+
+This project includes:
+
+- `supermarket_sales_analysis.ipynb` — main analysis notebook
+- `report.md` — written summary of findings
+- saved figures in the `figures/` folder, including:
+  - `avg_gross_income_over_time.png`
+  - `correlation_heatmap.png`
+  - `gross_income_by_branch.png`
+  - `gross_income_by_gender.png`
+  - `rating_distribution.png`
+  - `rating_vs_gross_income_regression.png`
+
+## Project Structure
+
 ```text
+python-supermarket-sales-analysis/
 ├── data/
+│   ├── README.md
 │   └── supermarket_sales.csv
 ├── figures/
+│   ├── .gitkeep
 │   ├── avg_gross_income_over_time.png
 │   ├── correlation_heatmap.png
 │   ├── gross_income_by_branch.png
@@ -54,26 +99,41 @@ Below are a few key visuals from the EDA (saved in the `figures/` folder):
 │   ├── rating_distribution.png
 │   └── rating_vs_gross_income_regression.png
 ├── notebooks/
-│   └── supermarket_sales_eda.ipynb
+│   └── supermarket_sales_analysis.ipynb
+├── README.md
 ├── report.md
-└── README.md
+└── requirements.txt
 ```
 
 ## How to Run
-1. Clone the repo and place the dataset in `data/` (or update the path in the notebook).
-2. Create/activate a Python environment.
-3. Install dependencies (see below).
-4. Open the notebook and run all cells.
 
-## Dependencies
-- pandas
-- numpy
-- matplotlib
-- seaborn
-- scipy
-- ydata-profiling (optional)
-- calmap (optional)
+1. Open the notebook in Jupyter Notebook, JupyterLab, or VS Code.
+2. Make sure the dataset is available in the `data/` folder.
+3. Install the required dependencies.
+4. Run all notebook cells from top to bottom.
+5. Review the saved figures and written report for the final outputs.
 
-Example:
+Example dependency install:
+
 ```bash
 pip install pandas numpy matplotlib seaborn scipy
+```
+
+## Notes
+
+- Missing values are handled with simple baseline imputation:
+  - numeric columns → mean
+  - categorical columns → mode
+- Duplicate rows are removed before analysis.
+- Some financial columns are derived from one another, so high correlations among them are expected.
+- This project is focused on exploratory analysis and interpretation rather than predictive modeling.
+
+## Future Improvements
+
+Potential next steps include:
+
+- segmenting profitability by product line, customer type, city, and branch
+- adding time features such as day of week or hour of day
+- testing more robust imputation approaches
+- building a lightweight predictive model using independent variables only
+- expanding the report with more business recommendations
