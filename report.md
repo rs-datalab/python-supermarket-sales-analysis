@@ -66,5 +66,5 @@ Scope: 3 branches (A/B/C), multiple cities, product lines, and payment methods.
 - (Optional) Build a lightweight predictive model using independent features (exclude redundant derived columns).
 
 ## Deliverables
-- **Notebook:** `notebooks/supermarket_sales_eda.ipynb`
+- **Notebook:** `notebooks/supermarket_sales_analysis.ipynb`
 - **Report:** `report.md`
